@@ -15,3 +15,5 @@ You can then use lea (load effective address) to place the address of that calcu
 
 Overall, this was a great challenge, and one that helped me to understand a lot of nuances about the stack,
 x86_64 assembly, and, most importantly, ATTENTION TO DETAIL. Especially when I am moving different sizes of data into different places.
+
+This challenge can be found at https://pwn.college/computing-101/assembly-crash-course/ under the challenge most_common_byte
