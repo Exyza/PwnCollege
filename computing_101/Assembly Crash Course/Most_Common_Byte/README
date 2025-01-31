@@ -1,0 +1,17 @@
+What did I learn from this challenge?
+
+This challenge took me around 4-5 hours, spread out through multiple days.
+But, what were the main takeaways from it?
+
+1. The stack frame is used for local variables relative to the function that is called
+2. Size matters, particularly when you are allocating space for these local variables.
+I was having a tremendously hard time figuring out how much memory I needed to subtract from rsp in the epilouge of my program.
+This is still something that I don't fully understand, and will come back to explain in more detail (in my own words) later on.
+3. When you are tyring to update the value of array[i], you cannot use the memory address of [register-register].
+Instead, you must use rbp (base pointer) and an offset to jump to the bottom of your allocated memory.
+You can then use lea (load effective address) to place the address of that calculation into a register 
+  and THEN use that register (which now contains the address of array[i]) for proper storage.
+
+
+Overall, this was a great challenge, and one that helped me to understand a lot of nuances about the stack,
+x86_64 assembly, and, most importantly, ATTENTION TO DETAIL. Especially when I am moving different sizes of data into different places.
