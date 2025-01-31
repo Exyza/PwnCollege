@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.10">
+  <diagram name="Page-1" id="QkVzNnFN1stSkrlY1I3k">
+    <mxGraphModel dx="443" dy="521" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bKbmZp00sk1vcqRIi0Jt-1" target="vSql_hrZCn5pN5BiE2Xt-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bKbmZp00sk1vcqRIi0Jt-1" value="set two iterators&lt;div&gt;r12 will be i&lt;/div&gt;&lt;div&gt;r11 will be curr_byte&lt;/div&gt;&lt;div&gt;r10 will be used to hold the stack base&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;xor r12, r12&lt;/div&gt;&lt;div&gt;xor r11, r11&lt;/div&gt;&lt;div&gt;xor r10, r10&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="320" y="20" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-1" target="vSql_hrZCn5pN5BiE2Xt-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-1" value="set up the stack frame&lt;div&gt;allocate the necessary space&lt;/div&gt;&lt;div&gt;&lt;b&gt;remember, rbp will now be the &quot;top&quot; of the stack (in memory)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;rsp will now be the base of the stack (in memory) but the TOP of the stack&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;mov rbp, rsp&lt;/div&gt;&lt;div&gt;sub rsp, 0xffff&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="312.5" y="190" width="155" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-3" target="vSql_hrZCn5pN5BiE2Xt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-3" target="vSql_hrZCn5pN5BiE2Xt-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-3" value="here we will start a while loop&lt;div&gt;this while loop will loop over all of the values from the source address to the max size and put them onto the stack frame&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;sub rsi, 1&lt;/div&gt;&lt;div&gt;loop_1:&lt;/div&gt;&lt;div&gt;cmp r12, rsi&lt;/div&gt;&lt;div&gt;jg to next_Step:&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="515" width="250" height="295" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-5" target="vSql_hrZCn5pN5BiE2Xt-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-5" value="now, we need to set get the value of the current byte and put it into a register&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;mov r11b, byte ptr [rdi+r12]&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="632.5" width="150" height="117.5" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-7" value="now, we need to take the value of the stack base and subtract it by the current byte&lt;div&gt;then we need to add 1 to that location&lt;/div&gt;&lt;div&gt;then, allow iteration to the next byte&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;mov r10, rbp&lt;/div&gt;&lt;div&gt;sub r10, r11&lt;/div&gt;&lt;div&gt;add [r10], 1&lt;/div&gt;&lt;div&gt;xor r10, r10&lt;/div&gt;&lt;div&gt;inc r12&lt;/div&gt;&lt;div&gt;jmp loop_1&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="641.25" y="858.75" width="187.5" height="201.25" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.846;entryY=0.656;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-7" target="vSql_hrZCn5pN5BiE2Xt-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-10" target="vSql_hrZCn5pN5BiE2Xt-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-10" value="reset r13, r12, r11, r10 so they can be the new iterators&lt;div&gt;r13 will hold the stack base&lt;br&gt;&lt;div&gt;r12 will be b&lt;/div&gt;&lt;div&gt;r11 will be the max frequency&lt;/div&gt;&lt;div&gt;r10 will be the most frequent byte&lt;/div&gt;&lt;div&gt;move the stack base into r13&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;next_Step:&lt;/div&gt;&lt;div&gt;xor r13, r13&lt;/div&gt;&lt;div&gt;xor r12, r12&lt;/div&gt;&lt;div&gt;xor r11, r11&lt;/div&gt;&lt;div&gt;xor r10, r10&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;mov r13, rbp&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="880" width="210" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-12" target="vSql_hrZCn5pN5BiE2Xt-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-12" target="vSql_hrZCn5pN5BiE2Xt-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-12" value="we will now iterate through the stack frame, one byte at a time&lt;div&gt;If the value that is in the stack frame is greater than the max requency, we will make that the most frequent byte&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;loop_2:&lt;/div&gt;&lt;div&gt;cmp r12, 0xff&lt;/div&gt;&lt;div&gt;jg the_End&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="137.5" y="1140" width="255" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-16" target="vSql_hrZCn5pN5BiE2Xt-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-16" target="vSql_hrZCn5pN5BiE2Xt-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-16" value="we are now comparing the value at the current byte on the stack frame to the max frequency&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;cmp [r13-r12], r11&lt;/div&gt;&lt;div&gt;jle iteration_Time&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="472.5" y="1140" width="255" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-18" target="vSql_hrZCn5pN5BiE2Xt-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-18" value="this route means that the value of that byte was more than the max requency, so we now have to set the new max requency equal to whatever is in that byte&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;mov r11, [r13-r12]&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="875" y="1250" width="175" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-20" target="vSql_hrZCn5pN5BiE2Xt-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-20" value="we will now set the most frequent byte equal to the value of b. But how do we get the value of b?&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;sub r13, r12&lt;/div&gt;&lt;div&gt;mov r10, r13&lt;/div&gt;&lt;div&gt;xor r13, r13&lt;/div&gt;&lt;div&gt;mov r13 rbp&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="858.75" y="1495" width="207.5" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-22" value="iteration_Time:&lt;div&gt;inc r12&lt;/div&gt;&lt;div&gt;jmp loop_2&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1537.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-25" value="&lt;div&gt;Here, we need to reset the stack and move the most frequent byte into rax&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;the_End:&lt;div&gt;xor rax, rax&lt;br&gt;&lt;div&gt;mov rsp, rbp&lt;/div&gt;&lt;div&gt;mov al, r10b&lt;/div&gt;&lt;div&gt;ret&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="182.5" y="1610" width="165" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="vSql_hrZCn5pN5BiE2Xt-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.881;entryY=0.626;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vSql_hrZCn5pN5BiE2Xt-22" target="vSql_hrZCn5pN5BiE2Xt-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

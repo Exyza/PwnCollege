@@ -1,0 +1,33 @@
+What is this program doing?
+
+The purpose of this program is to find the most common byte. We are given a source address, and a size of the data set
+src is in rdi
+size is in rsi
+
+i = o ; setting a counter
+
+while i <= size-1: ; Making a while loop that will move through the memory until the size has been done
+
+	curr_byte = [src_addr + i] ; Setting the current byte equal to whatever is at the current position (allows for iteration to the max size)
+	
+	[stack_base - curr_byte] += 1 ; Subtracting stack_base from the value in curr_byte, then taking whatever is at that memory address and incrementing it by 1 (allowing the stack frame representing that value to be incremented)
+	
+	i += 1 ; increasing the counter to go to the next byte
+	
+; This section of code is putting the values from the source address on into the stack frame
+
+b = 0 ; setting another iterator ; r9
+
+max_freq = 0 ; setting another iterator ; r8
+
+max_freq_byte = 0 ; setting another iterator ; r7
+
+while b <= 0xff ; Setting a while loop that will loop as long as b is less than or equal to that hex value
+
+	if [stack_base - b] > max_freq: ; Checking if the value held on the stack frame at position b is greater than the max_freq
+		max_freq = [stack_base - b] ; Setting the value of max_freq equal to the value in byte at stack_base - be (incrementing the value of max_freq)
+		max_freq_byte = b ; Setting the value of max_freq_byte to b, containing the new byte that is the most frequent
+	b += 1 ; moving to the next byte so that the program can continute to iterate
+
+return max_freq_byte ; returning the most frequent byte	
+		
