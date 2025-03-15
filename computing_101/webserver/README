@@ -3,5 +3,5 @@ This is a very simple webserver, written in x86_64 assembly.
 It uses the nasm assembler, and the default GNU linker.
 
 To create a valid executable, run the following commands in the same directory as the webserver.asm file:
-  nasm -g -f elf64 -o webserver3.o webserver3.s # Assemble with debug symbols
-  ld -o webserver3 webserver3.o -g  # Link while preserving debug symbols
+  nasm -g -f elf64 -o file1.o file1.asm # Assemble with debug symbols
+  ld -o file1 file1.o -g  # Link while preserving debug symbols
